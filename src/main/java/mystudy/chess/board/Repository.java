@@ -20,7 +20,7 @@ public interface Repository {
 
     boolean isChecked(String teamName);
 
-    List<Point> isGetOutOfCheck(List<Point> movePointList, String teamName);
+    List<Point> isGetOutOfCheck(Piece piece, String teamName);
 
     boolean isCheckmate(String teamName);
 }
