@@ -16,7 +16,7 @@ public interface Repository {
 
     boolean isInBoard(Point point);
 
-    List<Point> canMovePoint(Piece piece, Point point);
+    List<Point> canMovePoint(List<Point> movePointList);
 
     boolean isCheck(String teamName);
 
