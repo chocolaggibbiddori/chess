@@ -2,6 +2,8 @@ package mystudy.chess.peice;
 
 import mystudy.chess.board.Point;
 
+import java.util.List;
+
 public abstract class Piece {
 
     private Point point;
@@ -23,4 +25,6 @@ public abstract class Piece {
     public void setPoint(String point) {
         this.point.setPoint(point);
     }
+
+    public abstract List<Point> moveList();
 }
