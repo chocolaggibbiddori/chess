@@ -6,7 +6,7 @@ import java.util.List;
 
 public interface Repository {
 
-    void move(Piece piece, Point endPoint);
+    boolean move(Piece piece, Point endPoint);
 
     Piece replace(Piece piece, Point endPoint);
 
