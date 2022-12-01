@@ -6,10 +6,7 @@ public class Point {
     private int y;
 
     public Point(String point) {
-        char x = point.toUpperCase().charAt(0);
-        char y = point.charAt(1);
-        this.x = '8' - y;
-        this.y = x - 'A';
+        setPoint(point);
     }
 
     public int getX() {
