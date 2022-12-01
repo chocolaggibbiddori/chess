@@ -23,4 +23,12 @@ public class Point {
         this.x = '8' - y;
         this.y = x - 'A';
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj instanceof Point point) {
+            return this.x == point.getX() && this.y == point.getY();
+        }
+        return false;
+    }
 }
