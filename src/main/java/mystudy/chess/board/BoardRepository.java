@@ -1,7 +1,7 @@
 package mystudy.chess.board;
 
-import mystudy.chess.peice.King;
-import mystudy.chess.peice.Piece;
+import mystudy.chess.piece.King;
+import mystudy.chess.piece.Piece;
 import org.springframework.stereotype.Repository;
 
 import java.util.*;
