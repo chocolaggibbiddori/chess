@@ -18,7 +18,7 @@ public interface Repository {
 
     List<Point> canMovePoint(List<Point> movePointList, String teamName);
 
-    boolean isCheck(String teamName);
+    boolean isChecked(String teamName);
 
     boolean isGetOutOfCheck(String teamName);
 
