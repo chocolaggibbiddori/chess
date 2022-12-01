@@ -5,24 +5,25 @@ public class Point {
     private int x;
     private int y;
 
-    public Point(int x, int y) {
-        this.x = x;
-        this.y = y;
+    public Point(String point) {
+        char x = point.toUpperCase().charAt(0);
+        char y = point.charAt(1);
+        this.x = '8' - y;
+        this.y = x - 'A';
     }
 
     public int getX() {
         return x;
     }
 
-    public void setX(int x) {
-        this.x = x;
-    }
-
     public int getY() {
         return y;
     }
 
-    public void setY(int y) {
-        this.y = y;
+    public void setPoint(String point) {
+        char x = point.toUpperCase().charAt(0);
+        char y = point.charAt(1);
+        this.x = '8' - y;
+        this.y = x - 'A';
     }
 }
