@@ -26,5 +26,9 @@ public abstract class Piece {
         this.point.setPoint(point);
     }
 
+    public void setPoint(Point point) {
+        this.point = point;
+    }
+
     public abstract List<Point> moveList();
 }
