@@ -6,8 +6,8 @@ import java.util.List;
 
 public abstract class Piece {
 
-    private Point point;
-    private final String teamName;
+    Point point;
+    final String teamName;
 
     public Piece(String point, String teamName) {
         this.point = new Point(point);
