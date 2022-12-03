@@ -45,6 +45,9 @@ public class BoardRepository implements mystudy.chess.board.Repository {
     @Override
     public String findTeamByPoint(Point point) {
         Piece piece = findByPoint(point);
+        if (piece == null) {
+            return "";
+        }
         return piece.getTeamName();
     }
 
@@ -52,10 +55,10 @@ public class BoardRepository implements mystudy.chess.board.Repository {
     public boolean isInBoard(Point point) {
         int x = point.getX();
         int y = point.getY();
-        if (x < 0 || x > 8) {
+        if (x < 0 || x > 7) {
             return false;
         }
-        if (y < 0 || y > 8) {
+        if (y < 0 || y > 7) {
             return false;
         }
         return true;
