@@ -6,7 +6,7 @@ import java.util.List;
 
 public class Rook extends Piece{
 
-    public Rook(String point, String teamName) {
+    public Rook(Point point, String teamName) {
         super(point, teamName);
     }
 

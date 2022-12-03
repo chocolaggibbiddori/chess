@@ -9,8 +9,8 @@ public abstract class Piece {
     Point point;
     final String teamName;
 
-    public Piece(String point, String teamName) {
-        this.point = new Point(point);
+    public Piece(Point point, String teamName) {
+        this.point = point;
         this.teamName = teamName;
     }
 

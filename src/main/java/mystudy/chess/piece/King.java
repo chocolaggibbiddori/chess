@@ -6,7 +6,7 @@ import java.util.List;
 
 public class King extends Piece{
 
-    public King(String point, String teamName) {
+    public King(Point point, String teamName) {
         super(point, teamName);
     }
 

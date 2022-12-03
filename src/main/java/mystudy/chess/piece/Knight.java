@@ -6,7 +6,7 @@ import java.util.List;
 
 public class Knight extends Piece{
 
-    public Knight(String point, String teamName) {
+    public Knight(Point point, String teamName) {
         super(point, teamName);
     }
 

@@ -6,7 +6,7 @@ import java.util.List;
 
 public class Pawn extends Piece{
 
-    public Pawn(String point, String teamName) {
+    public Pawn(Point point, String teamName) {
         super(point, teamName);
     }
 

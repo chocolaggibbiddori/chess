@@ -6,7 +6,7 @@ import java.util.List;
 
 public class Bishop extends Piece{
 
-    public Bishop(String point, String teamName) {
+    public Bishop(Point point, String teamName) {
         super(point, teamName);
     }
 
