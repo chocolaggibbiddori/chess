@@ -150,4 +150,16 @@ public class BoardRepository implements mystudy.chess.board.Repository {
         }
         return false;
     }
+
+    public void clear() {
+        for (int i = 0; i < pieces.length; i++) {
+            for (int j = 0; j < pieces[0].length; j++) {
+                pieces[i][j] = null;
+            }
+        }
+    }
+
+    public String readPieces() {
+        return Arrays.deepToString(pieces);
+    }
 }
