@@ -12,6 +12,11 @@ public class BoardRepository implements mystudy.chess.board.Repository {
     private static final Piece[][] pieces = new Piece[8][8];
 
     @Override
+    public void setUpPiece(Piece piece, Point point) {
+        pieces[point.getX()][point.getY()] = piece;
+    }
+
+    @Override
     public boolean move(Piece piece, Point endPoint) {
         if (findTeamByPoint(endPoint).equals(piece.getTeamName())) {
             return false;
