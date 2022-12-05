@@ -36,4 +36,13 @@ public class Point {
         }
         return false;
     }
+
+    @Override
+    public String toString() {
+        char charY = (char) ('A' + y);
+        char charX = (char) ('8' - x);
+        String first = String.valueOf(charY);
+        String second = String.valueOf(charX);
+        return first + second;
+    }
 }
