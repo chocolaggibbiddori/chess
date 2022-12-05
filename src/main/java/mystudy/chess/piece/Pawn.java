@@ -56,7 +56,16 @@ public class Pawn extends Piece {
         }
     }
 
-    public Piece upgrade(Piece toPiece, BoardRepository boardRepository) {
-
+    public void promotion(Promotion toPiece) {
+        BoardRepository boardRepository = new BoardRepository();
+        Piece newPiece = null;
+        switch (toPiece) {
+            case PAWN -> newPiece = this;
+            case BISHOP -> newPiece = new Bishop(point, teamName);
+            case KNIGHT -> newPiece = new Knight(point, teamName);
+            case ROOK -> newPiece = new Rook(point, teamName);
+            case QUEEN -> newPiece = new Queen(point, teamName);
+        }
+        boardRepository.setUpPiece(newPiece, point);
     }
 }
