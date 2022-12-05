@@ -18,7 +18,7 @@ public abstract class Piece {
 
     @Override
     public String toString() {
-        return teamName + this.getClass();
+        return teamName + ", " + this.getClass();
     }
 
     public Point getPoint() {
