@@ -1,6 +1,7 @@
 package mystudy.chess.piece;
 
 import mystudy.chess.board.BoardRepository;
+import mystudy.chess.board.MemoryBoardRepository;
 import mystudy.chess.board.Point;
 
 import java.util.ArrayList;
@@ -8,10 +9,15 @@ import java.util.List;
 
 public class Pawn extends Piece {
 
-    private boolean isFirstMove = true;
+    private boolean isFirstMove;
 
     public Pawn(Point point, String teamName) {
         super(point, teamName);
+        isFirstMove = true;
+    }
+
+    public void setIsFirstMoveFalse() {
+        isFirstMove = false;
     }
 
     @Override
@@ -22,8 +28,10 @@ public class Pawn extends Piece {
             return moveList;
         }
 
+        BoardRepository boardRepository = new MemoryBoardRepository();
         makePoint(moveList);
-        makeDiagonalPoint(moveList);
+        makeDiagonalPoint(moveList, boardRepository);
+        makeEnpassantPoint(moveList, boardRepository);
         return moveList;
     }
 
@@ -38,8 +46,7 @@ public class Pawn extends Piece {
         }
     }
 
-    private void makeDiagonalPoint(List<Point> moveList) {
-        BoardRepository boardRepository = new BoardRepository();
+    private void makeDiagonalPoint(List<Point> moveList, BoardRepository boardRepository) {
         int pointX = point.getX();
         int moveDirect = isTeamWhite ? -1 : 1;
         int nextX = pointX + moveDirect;
@@ -56,8 +63,18 @@ public class Pawn extends Piece {
         }
     }
 
-    public void promotion(Promotion toPiece) {
-        BoardRepository boardRepository = new BoardRepository();
+    // TODO: 2022/12/05 앙파상
+    private void makeEnpassantPoint(List<Point> moveList, BoardRepository boardRepository) {
+        int pointX = point.getX();
+        boolean isEnpassantPoint = (isTeamWhite) ? pointX == 3 : pointX == 4;
+        if (!isEnpassantPoint) {
+            return;
+        }
+
+
+    }
+
+    public void promotion(Promotion toPiece, BoardRepository boardRepository) {
         Piece newPiece = null;
         switch (toPiece) {
             case PAWN -> newPiece = this;
