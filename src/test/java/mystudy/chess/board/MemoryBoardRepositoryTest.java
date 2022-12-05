@@ -7,13 +7,13 @@ import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-class BoardRepositoryTest {
+class MemoryBoardRepositoryTest {
 
-    BoardRepository boardRepository = new BoardRepository();
+    MemoryBoardRepository memoryBoardRepository = new MemoryBoardRepository();
 
     @AfterEach
     void afterEach() {
-        boardRepository.clear();
+        memoryBoardRepository.clear();
     }
 
     @Test
@@ -24,13 +24,13 @@ class BoardRepositoryTest {
         Piece king1 = new King(point1, "Black");
         Piece king2 = new King(point2, "Black");
         Piece king3 = new King(point3, "Black");
-        boardRepository.setUpPiece(king1, point1);
-        boardRepository.setUpPiece(king2, point2);
-        boardRepository.setUpPiece(king3, point3);
+        memoryBoardRepository.setUpPiece(king1, point1);
+        memoryBoardRepository.setUpPiece(king2, point2);
+        memoryBoardRepository.setUpPiece(king3, point3);
 
-        Piece piece1 = boardRepository.findByPoint(point1);
-        Piece piece2 = boardRepository.findByPoint(point2);
-        Piece piece3 = boardRepository.findByPoint(point3);
+        Piece piece1 = memoryBoardRepository.findByPoint(point1);
+        Piece piece2 = memoryBoardRepository.findByPoint(point2);
+        Piece piece3 = memoryBoardRepository.findByPoint(point3);
         assertThat(piece1).isEqualTo(king1);
         assertThat(piece2).isEqualTo(king2);
         assertThat(piece3).isEqualTo(king3);
@@ -46,17 +46,17 @@ class BoardRepositoryTest {
         Piece king2 = new King(point2, "Black");
         Piece king3 = new King(point3, "White");
 
-        boardRepository.setUpPiece(king1, point1);
-        boardRepository.setUpPiece(king2, point2);
-        boardRepository.setUpPiece(king3, point3);
+        memoryBoardRepository.setUpPiece(king1, point1);
+        memoryBoardRepository.setUpPiece(king2, point2);
+        memoryBoardRepository.setUpPiece(king3, point3);
 
-        boardRepository.move(king1, point4);
-        Piece findPiece = boardRepository.findByPoint(point4);
+        memoryBoardRepository.move(king1, point4);
+        Piece findPiece = memoryBoardRepository.findByPoint(point4);
         assertThat(findPiece).isEqualTo(king1);
-        assertThat(boardRepository.findByPoint(point1)).isNull();
+        assertThat(memoryBoardRepository.findByPoint(point1)).isNull();
 
-        assertThat(boardRepository.move(king1, point2)).isFalse();
-        assertThat(boardRepository.move(king1, point3)).isTrue();
+        assertThat(memoryBoardRepository.move(king1, point2)).isFalse();
+        assertThat(memoryBoardRepository.move(king1, point3)).isTrue();
     }
 
     @Test
@@ -68,12 +68,12 @@ class BoardRepositoryTest {
         Piece king2 = new King(point1, "Black");
         Piece king3 = new King(point1, "White");
 
-        boardRepository.setUpPiece(king1, point1);
-        boardRepository.setUpPiece(king2, point2);
-        boardRepository.setUpPiece(king3, point3);
+        memoryBoardRepository.setUpPiece(king1, point1);
+        memoryBoardRepository.setUpPiece(king2, point2);
+        memoryBoardRepository.setUpPiece(king3, point3);
 
-        assertThat(boardRepository.replace(king1, point2)).isNull();
-        assertThat(boardRepository.replace(king1, point3)).isNotNull();
+        assertThat(memoryBoardRepository.replace(king1, point2)).isNull();
+        assertThat(memoryBoardRepository.replace(king1, point3)).isNotNull();
     }
 
     @Test
@@ -83,11 +83,11 @@ class BoardRepositoryTest {
         Piece king1 = new King(point1, "Black");
         Piece king2 = new King(point1, "White");
 
-        boardRepository.setUpPiece(king1, point1);
-        boardRepository.setUpPiece(king2, point2);
+        memoryBoardRepository.setUpPiece(king1, point1);
+        memoryBoardRepository.setUpPiece(king2, point2);
 
-        assertThat(boardRepository.findTeamByPoint(point1)).isEqualTo("Black");
-        assertThat(boardRepository.findTeamByPoint(point2)).isEqualTo("White");
+        assertThat(memoryBoardRepository.findTeamByPoint(point1)).isEqualTo("Black");
+        assertThat(memoryBoardRepository.findTeamByPoint(point2)).isEqualTo("White");
     }
 
     @Test
@@ -97,10 +97,10 @@ class BoardRepositoryTest {
         Point point3 = new Point("K0");
         Point point4 = new Point("g9");
 
-        assertThat(boardRepository.isInBoard(point1)).isTrue();
-        assertThat(boardRepository.isInBoard(point2)).isFalse();
-        assertThat(boardRepository.isInBoard(point3)).isFalse();
-        assertThat(boardRepository.isInBoard(point4)).isFalse();
+        assertThat(memoryBoardRepository.isInBoard(point1)).isTrue();
+        assertThat(memoryBoardRepository.isInBoard(point2)).isFalse();
+        assertThat(memoryBoardRepository.isInBoard(point3)).isFalse();
+        assertThat(memoryBoardRepository.isInBoard(point4)).isFalse();
     }
 
     @Test
