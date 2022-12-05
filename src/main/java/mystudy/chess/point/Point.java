@@ -1,4 +1,4 @@
-package mystudy.chess.board;
+package mystudy.chess.point;
 
 public class Point {
 

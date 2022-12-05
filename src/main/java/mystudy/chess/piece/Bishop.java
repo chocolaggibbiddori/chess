@@ -1,6 +1,6 @@
 package mystudy.chess.piece;
 
-import mystudy.chess.board.Point;
+import mystudy.chess.point.Point;
 
 import java.util.List;
 
