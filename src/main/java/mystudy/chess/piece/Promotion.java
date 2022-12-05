@@ -1,10 +1,9 @@
 package mystudy.chess.piece;
 
-public enum EnumPieces {
+public enum Promotion {
     PAWN,
     KNIGHT,
     BISHOP,
     ROOK,
     QUEEN,
-    KING
 }
