@@ -15,6 +15,8 @@ public interface BoardRepository {
 
     Piece findByPoint(Point point);
 
+    Piece findByStringPoint(String point);
+
     String findTeamByPoint(Point point);
 
     boolean isInBoard(Point point);
