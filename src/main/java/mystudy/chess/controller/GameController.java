@@ -2,7 +2,11 @@ package mystudy.chess.controller;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import mystudy.chess.game.GameSetting;
+import mystudy.chess.repository.BoardRepository;
+import mystudy.chess.view.View;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -12,9 +16,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequiredArgsConstructor
 public class GameController {
 
+    private final BoardRepository boardRepository;
+    private final View view;
+    private final GameSetting gameSetting;
+
     @GetMapping
-    public String gameStart() {
-        // TODO: 2022/12/07 뷰 만들어야함
-        return "/start";
+    public String gameStart(Model model) {
+        gameSetting.gameInit();
+        String board = view.drawBoard();
+        model.addAttribute("board", board);
+        return "/game";
     }
 }
