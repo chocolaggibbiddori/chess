@@ -11,6 +11,12 @@ public class Knight extends Piece{
     }
 
     @Override
+    public String toString() {
+        String firstTeamName = isTeamWhite ? "W" : "B";
+        return firstTeamName + "N";
+    }
+
+    @Override
     public List<Point> moveList() {
         return null;
     }
