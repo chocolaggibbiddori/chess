@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>체스</title>
+</head>
+<body>
+    <div style='float:left'>
+        <pre th:utext="${board}">보드판</pre>
+    </div>
+    <form style='float:right;margin-right:200px;margin-top:200px' action="game.html" method="post">
+        <div>
+            <label for="piece">선택할 기물:</label>
+            <input type="text" id="piece" placeholder="좌표를 입력하세요">
+        </div>
+    </form>
+</body>
+</html>
