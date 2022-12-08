@@ -17,6 +17,7 @@ public class View {
     private int rowNumberIdx = 0;
 
     public String drawBoard() {
+        sb.append("<br>\n");
         drawAlphabet();
         for (int i = 0; i < 4; i++) {
             drawRowLine();
@@ -34,33 +35,33 @@ public class View {
     }
 
     private void drawAlphabet() {
-        sb.append("            ");
+        sb.append(" ".repeat(12));
         for (String alphabet : colAlphabet) {
-            sb.append(alphabet).append("         ");
+            sb.append(alphabet).append(" ".repeat(9));
         }
-        sb.append("\n");
+        sb.append("<br>\n");
     }
 
     private void drawRowLine() {
-        sb.append("       ");
+        sb.append(" ".repeat(7));
         sb.append(" ---------".repeat(8));
-        sb.append("\n");
+        sb.append("<br>\n");
     }
 
     private void drawColLineFirstWhite() {
-        String col = "|         |---------";
-        sb.append("       ");
+        String col = "|" + " ".repeat(9) + "|---------";
+        sb.append(" ".repeat(7));
         sb.append(col.repeat(4));
         sb.append("|");
-        sb.append("\n");
+        sb.append("<br>\n");
     }
 
     private void drawColLineFirstBlack() {
-        String col = "|---------|         ";
-        sb.append("       ");
+        String col = "|---------|" + " ".repeat(9);
+        sb.append(" ".repeat(7));
         sb.append(col.repeat(4));
         sb.append("|");
-        sb.append("\n");
+        sb.append("<br>\n");
     }
 
     private void drawColLineWithPieceFirstWhite() {
@@ -69,7 +70,8 @@ public class View {
         sb.append("   ");
         Piece piece;
         for (int i = 0; i < colAlphabet.length; i += 2) {
-            sb.append("|   ");
+            sb.append("|");
+            sb.append("   ");
             piece = boardRepository.findByPoint(rowNumberIdx, i);
             if (piece == null) {
                 sb.append("   ");
@@ -87,7 +89,7 @@ public class View {
         }
         sb.append("|   ");
         sb.append(rowNumber[rowNumberIdx++]);
-        sb.append("\n");
+        sb.append("<br>\n");
     }
 
     private void drawColLineWithPieceFirstBlack() {
@@ -114,7 +116,7 @@ public class View {
         }
         sb.append("|   ");
         sb.append(rowNumber[rowNumberIdx++]);
-        sb.append("\n");
+        sb.append("<br>\n");
     }
 }
 //            A         B         C         D         E         F         G         H
