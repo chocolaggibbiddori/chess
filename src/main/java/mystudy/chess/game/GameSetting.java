@@ -20,6 +20,7 @@ public class GameSetting {
         setBlackPawnLine(pointArray[1]);
         setWhitePawnLine(pointArray[2]);
         setWhiteBackLine(pointArray[3]);
+        log.info("Game Setting Complete");
     }
 
     private Point[][] setPointArray() {
