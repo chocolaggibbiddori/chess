@@ -20,7 +20,7 @@ public abstract class Piece {
     public String toString() {
         String firstTeamName = isTeamWhite ? "W" : "B";
         String pieceName = getClass().getSimpleName().substring(0, 1);
-        return firstTeamName + pieceName;
+        return firstTeamName + " " + pieceName;
     }
 
     public Point getPoint() {
