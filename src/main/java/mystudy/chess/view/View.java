@@ -37,7 +37,7 @@ public class View {
     private void drawAlphabet() {
         sb.append(" ".repeat(12));
         for (String alphabet : colAlphabet) {
-            sb.append(alphabet).append(" ".repeat(9));
+            sb.append("<b>").append(alphabet).append("</b>").append(" ".repeat(9));
         }
         sb.append("<br>\n");
     }
@@ -66,7 +66,7 @@ public class View {
 
     private void drawColLineWithPieceFirstWhite() {
         sb.append("   ");
-        sb.append(rowNumber[rowNumberIdx]);
+        sb.append("<b>").append(rowNumber[rowNumberIdx]).append("</b>");
         sb.append("   ");
         Piece piece;
         for (int i = 0; i < colAlphabet.length; i += 2) {
@@ -76,25 +76,25 @@ public class View {
             if (piece == null) {
                 sb.append("   ");
             } else {
-                sb.append(piece);
+                sb.append("<b>").append(piece).append("</b>");
             }
             sb.append("   |---");
             piece = boardRepository.findByPoint(rowNumberIdx, i + 1);
             if (piece == null) {
                 sb.append("   ");
             } else {
-                sb.append(piece);
+                sb.append("<b>").append(piece).append("</b>");
             }
             sb.append("---");
         }
         sb.append("|   ");
-        sb.append(rowNumber[rowNumberIdx++]);
+        sb.append("<b>").append(rowNumber[rowNumberIdx++]).append("</b>");
         sb.append("<br>\n");
     }
 
     private void drawColLineWithPieceFirstBlack() {
         sb.append("   ");
-        sb.append(rowNumber[rowNumberIdx]);
+        sb.append("<b>").append(rowNumber[rowNumberIdx]).append("</b>");
         sb.append("   ");
         Piece piece;
         for (int i = 0; i < colAlphabet.length; i += 2) {
@@ -103,19 +103,19 @@ public class View {
             if (piece == null) {
                 sb.append("   ");
             } else {
-                sb.append(piece);
+                sb.append("<b>").append(piece).append("</b>");
             }
             sb.append("---|   ");
             piece = boardRepository.findByPoint(rowNumberIdx, i + 1);
             if (piece == null) {
                 sb.append("   ");
             } else {
-                sb.append(piece);
+                sb.append("<b>").append(piece).append("</b>");
             }
             sb.append("   ");
         }
         sb.append("|   ");
-        sb.append(rowNumber[rowNumberIdx++]);
+        sb.append("<b>").append(rowNumber[rowNumberIdx++]).append("</b>");
         sb.append("<br>\n");
     }
 }
