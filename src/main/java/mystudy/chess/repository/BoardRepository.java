@@ -1,4 +1,4 @@
-package mystudy.chess.board;
+package mystudy.chess.repository;
 
 import mystudy.chess.piece.Piece;
 import mystudy.chess.point.Point;

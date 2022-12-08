@@ -1,7 +1,7 @@
 package mystudy.chess.piece;
 
-import mystudy.chess.board.BoardRepository;
-import mystudy.chess.board.MemoryBoardRepository;
+import mystudy.chess.repository.BoardRepository;
+import mystudy.chess.repository.MemoryBoardRepository;
 import mystudy.chess.point.Point;
 
 import java.util.ArrayList;

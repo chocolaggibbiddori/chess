@@ -1,10 +1,7 @@
 package mystudy.chess.game;
 
 import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
-import mystudy.chess.board.BoardRepository;
-import mystudy.chess.piece.Piece;
-import mystudy.chess.point.Point;
+import mystudy.chess.repository.BoardRepository;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
