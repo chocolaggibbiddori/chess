@@ -44,9 +44,14 @@ public class MemoryBoardRepository implements BoardRepository {
     }
 
     @Override
-    public Piece findByStringPoint(String point) {
+    public Piece findByPoint(String point) {
         Point p = new Point(point);
         return findByPoint(p);
+    }
+
+    @Override
+    public Piece findByPoint(int x, int y) {
+        return pieces[x][y];
     }
 
     @Override
