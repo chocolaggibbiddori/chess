@@ -2,8 +2,11 @@ package mystudy.chess.view;
 
 import lombok.RequiredArgsConstructor;
 import mystudy.chess.piece.Piece;
+import mystudy.chess.point.Point;
 import mystudy.chess.repository.BoardRepository;
 import org.springframework.stereotype.Component;
+
+import java.util.List;
 
 @Component
 @RequiredArgsConstructor
@@ -11,12 +14,14 @@ public class View {
 
     private final BoardRepository boardRepository;
 
-    private StringBuilder sb = new StringBuilder();
+    private StringBuilder sb;
     private String[] rowNumber = {"8", "7", "6", "5", "4", "3", "2", "1"};
     private String[] colAlphabet = {"A", "B", "C", "D", "E", "F", "G", "H"};
-    private int rowNumberIdx = 0;
+    private int rowNumberIdx;
 
     public String drawBoard() {
+        sb = new StringBuilder();
+        rowNumberIdx = 0;
         sb.append("<br>\n");
         drawAlphabet();
         for (int i = 0; i < 4; i++) {
@@ -27,6 +32,26 @@ public class View {
             drawRowLine();
             drawColLineFirstBlack();
             drawColLineWithPieceFirstBlack();
+            drawColLineFirstBlack();
+        }
+        drawRowLine();
+        drawAlphabet();
+        return sb.toString();
+    }
+
+    public String drawBoard(List<Point> moveList) {
+        sb = new StringBuilder();
+        rowNumberIdx = 0;
+        sb.append("<br>\n");
+        drawAlphabet();
+        for (int i = 0; i < 4; i++) {
+            drawRowLine();
+            drawColLineFirstWhite();
+            drawColLineWithPieceFirstWhite(moveList);
+            drawColLineFirstWhite();
+            drawRowLine();
+            drawColLineFirstBlack();
+            drawColLineWithPieceFirstBlack(moveList);
             drawColLineFirstBlack();
         }
         drawRowLine();
@@ -73,23 +98,69 @@ public class View {
             sb.append("|");
             sb.append("   ");
             piece = boardRepository.findByPoint(rowNumberIdx, i);
-            if (piece == null) {
-                sb.append("   ");
-            } else {
-                sb.append("<b>").append(piece).append("</b>");
-            }
+            drawPiece(piece);
             sb.append("   |---");
             piece = boardRepository.findByPoint(rowNumberIdx, i + 1);
-            if (piece == null) {
-                sb.append("   ");
-            } else {
-                sb.append("<b>").append(piece).append("</b>");
-            }
+            drawPiece(piece);
             sb.append("---");
         }
         sb.append("|   ");
         sb.append("<b>").append(rowNumber[rowNumberIdx++]).append("</b>");
         sb.append("<br>\n");
+    }
+
+    private void drawColLineWithPieceFirstWhite(List<Point> moveList) {
+        sb.append("   ");
+        sb.append("<b>").append(rowNumber[rowNumberIdx]).append("</b>");
+        sb.append("   ");
+        Piece piece;
+        for (int i = 0; i < colAlphabet.length; i += 2) {
+            sb.append("|");
+            sb.append("   ");
+            piece = boardRepository.findByPoint(rowNumberIdx, i);
+            drawPiece(piece, moveList, i);
+            sb.append("   |---");
+            piece = boardRepository.findByPoint(rowNumberIdx, i + 1);
+            drawPiece(piece, moveList, i + 1);
+            sb.append("---");
+        }
+        sb.append("|   ");
+        sb.append("<b>").append(rowNumber[rowNumberIdx++]).append("</b>");
+        sb.append("<br>\n");
+    }
+
+    private void drawPiece(Piece piece) {
+        if (piece == null) {
+            sb.append("   ");
+        } else {
+            sb.append("<b>").append(piece).append("</b>");
+        }
+    }
+
+    private void drawPiece(Piece piece, List<Point> moveList, int yIdx) {
+        if (moveList.size() == 0) {
+            drawPiece(piece);
+            return;
+        }
+
+        Point point = new Point(rowNumberIdx, yIdx);
+        if (piece == null) {
+            if (moveList.contains(point)) {
+                sb.append(" o ");
+            }else {
+                sb.append("   ");
+            }
+        } else {
+            if (moveList.contains(point)) {
+                sb.append("<b>")
+                        .append(piece.toString().substring(0, 1))
+                        .append("o")
+                        .append(piece.toString().substring(2))
+                        .append("</b>");
+            } else {
+                sb.append("<b>").append(piece).append("</b>");
+            }
+        }
     }
 
     private void drawColLineWithPieceFirstBlack() {
@@ -100,18 +171,29 @@ public class View {
         for (int i = 0; i < colAlphabet.length; i += 2) {
             sb.append("|---");
             piece = boardRepository.findByPoint(rowNumberIdx, i);
-            if (piece == null) {
-                sb.append("   ");
-            } else {
-                sb.append("<b>").append(piece).append("</b>");
-            }
+            drawPiece(piece);
             sb.append("---|   ");
             piece = boardRepository.findByPoint(rowNumberIdx, i + 1);
-            if (piece == null) {
-                sb.append("   ");
-            } else {
-                sb.append("<b>").append(piece).append("</b>");
-            }
+            drawPiece(piece);
+            sb.append("   ");
+        }
+        sb.append("|   ");
+        sb.append("<b>").append(rowNumber[rowNumberIdx++]).append("</b>");
+        sb.append("<br>\n");
+    }
+
+    private void drawColLineWithPieceFirstBlack(List<Point> moveList) {
+        sb.append("   ");
+        sb.append("<b>").append(rowNumber[rowNumberIdx]).append("</b>");
+        sb.append("   ");
+        Piece piece;
+        for (int i = 0; i < colAlphabet.length; i += 2) {
+            sb.append("|---");
+            piece = boardRepository.findByPoint(rowNumberIdx, i);
+            drawPiece(piece, moveList, i);
+            sb.append("---|   ");
+            piece = boardRepository.findByPoint(rowNumberIdx, i + 1);
+            drawPiece(piece, moveList, i + 1);
             sb.append("   ");
         }
         sb.append("|   ");
