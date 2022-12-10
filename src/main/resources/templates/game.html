@@ -8,7 +8,7 @@
     <div style='float:left'>
         <pre th:utext="${board}">보드판</pre>
     </div>
-    <form style='float:right;margin-right:200px;margin-top:200px' th:action="@{/game}" action="game.html" method="post">
+    <form style='float:right;margin-right:200px;margin-top:200px' th:action="@{/game/select}" action="game.html" method="post">
         <div>
             <label for="piece">선택할 기물:</label>
             <input type="text" id="piece" name="strPiece" placeholder="좌표를 입력하세요">
