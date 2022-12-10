@@ -14,6 +14,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.util.List;
+
 @Slf4j
 @Controller
 @RequestMapping("/game")
@@ -23,6 +25,9 @@ public class GameController {
     private final BoardRepository boardRepository;
     private final View view;
     private final GameSetting gameSetting;
+
+    private Point point = new Point();
+    private Piece piece;
 
     @GetMapping
     public String gameStart(Model model) {
@@ -35,11 +40,22 @@ public class GameController {
 
     @PostMapping("/select")
     public String select(@RequestParam String strPiece, Model model) {
-        Point point = new Point(strPiece);
-        Piece piece = boardRepository.findByPoint(point);
+        point.setPoint(strPiece);
+        piece = boardRepository.findByPoint(point);
         log.info("Select Point, Piece : {}, {}", point, piece);
-        String board = view.drawBoard(piece.moveList());
+        List<Point> canMovePoints = boardRepository.canMovePoint(piece, piece.getTeamName());
+        String board = view.drawBoard(canMovePoints);
         model.addAttribute("board", board);
         return "/move";
+    }
+
+    @PostMapping("/next")
+    public String move(@RequestParam String strPoint, Model model) {
+        point.setPoint(strPoint);
+        List<Point> canMovePoints = boardRepository.canMovePoint(piece, piece.getTeamName());
+        boardRepository.replace(piece, point);
+        String board = view.drawBoard();
+        model.addAttribute("board", board);
+        return "redirect:/game";
     }
 }
