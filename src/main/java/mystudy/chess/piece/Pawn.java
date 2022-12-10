@@ -52,8 +52,15 @@ public class Pawn extends Piece {
         int nextX = pointX + moveDirect;
         Point point1 = new Point(nextX, point.getY() - 1);
         Point point2 = new Point(nextX, point.getY() + 1);
-        Piece findPiece1 = boardRepository.findByPoint(point1);
-        Piece findPiece2 = boardRepository.findByPoint(point2);
+        Piece findPiece1 = null;
+        Piece findPiece2 = null;
+
+        if (boardRepository.isInBoard(point1)) {
+            findPiece1 = boardRepository.findByPoint(point1);
+        }
+        if (boardRepository.isInBoard(point2)) {
+            findPiece2 = boardRepository.findByPoint(point2);
+        }
 
         if (findPiece1 != null && !findPiece1.teamName.equals(this.teamName)) {
             moveList.add(point1);
