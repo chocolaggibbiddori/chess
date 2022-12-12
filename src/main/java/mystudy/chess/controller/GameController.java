@@ -29,7 +29,7 @@ public class GameController {
     private Point point = new Point();
     private Piece piece;
 
-    @GetMapping
+    @GetMapping("/start")
     public String gameStart(Model model) {
         gameSetting.gameInit();
         String board = view.drawBoard();
